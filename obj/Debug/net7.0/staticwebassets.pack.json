@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_16.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Avatars\\img_avatar_16.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_17.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Avatars\\img_avatar_17.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_18.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Avatars\\img_avatar_18.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_9.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Avatars\\img_avatar_9.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_38_sda12Axc.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_38_sda12Axc.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_39_sd4g2JF2.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_39_sd4g2JF2.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_46_aB3Cf5.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_46_aB3Cf5.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_47_X8dYK9.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_47_X8dYK9.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_60_z1PqR7.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_60_z1PqR7.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_63_M6NvLp.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_63_M6NvLp.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_71_HtO2Ws.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_71_HtO2Ws.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_73_eU9iJl.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\Fotos\\via_73_eU9iJl.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.CragExplorer.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.CragExplorer.props",
+      "PackagePath": "build\\CragExplorer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.CragExplorer.props",
+      "PackagePath": "buildMultiTargeting\\CragExplorer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.CragExplorer.props",
+      "PackagePath": "buildTransitive\\CragExplorer.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
