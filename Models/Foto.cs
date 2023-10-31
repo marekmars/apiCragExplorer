@@ -5,16 +5,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace CragExplorer.Models;
+
 [Table("fotos")]
-public class Foto {
-    [Display(Name ="Codigo")]
-    public int Id { get ; set ; }
-  public string? Nombre { get; set; }
-    public string? Apellido { get; set; }
+public class Foto
+{
+  [Key]
+  [Column("id")]
+  public int Id { get; set; }
+
+  [ForeignKey("IdVia")]
+  public Via? Via { get; set; }
+
+  [Column("idVia")]
+  public int? IdVia { get; set; }
+
+  [Column("url")]
+  public string? Url { get; set; }
   
-    public string? Correo { get; set; }
-    public string? Clave { get; set; }
-    public string? Avatar{get; set; }
-    public bool? Google { get; set; }
-   
+ 
+  [ForeignKey("IdUsuario")]
+  public Usuario? Usuario { get; set; }
+
+  [Column("idUsuario")]
+  public int IdUsuario { get; set; }
+
+  public override string ToString()
+  {
+    return $"IdVia: {IdVia}, Url: {Url}, Usuario: {IdUsuario}";
+  }
 }

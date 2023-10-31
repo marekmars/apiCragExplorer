@@ -10,5 +10,11 @@ public class DataContext : DbContext
 
     public DbSet<Usuario> Usuarios { get; set; } = null!; 
     public DbSet<Sector> Sectores { get; set; } = null!;
+    public DbSet<Via> Vias { get; set; } = null!;
+    public DbSet<Zona> Zonas { get; set; } = null!;
+    public DbSet<Foto> Fotos { get; set; } = null!;
+    public DbSet<Resenia> Resenias { get; set; } = null!;
+    public DbSet<Estilo> Estilos { get; set; } = null!;
+    public DbSet<Grado> Grados { get; set; } = null!;
   
 }

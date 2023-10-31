@@ -5,16 +5,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace CragExplorer.Models;
-[Table("reseñas")]
-public class Resenia {
-    [Display(Name ="Codigo")]
-    public int Id { get ; set ; }
-  public string? Nombre { get; set; }
-    public string? Apellido { get; set; }
-  
-    public string? Correo { get; set; }
-    public string? Clave { get; set; }
-    public string? Avatar{get; set; }
-    public bool? Google { get; set; }
-   
+[Table("resenias")]
+public class Resenia
+{
+
+  public int? Id { get; set; }
+
+  [ForeignKey("IdVia")]
+  public Via? Via { get; set; }
+  public int? IdVia { get; set; }
+
+  [ForeignKey("IdUsuario")]
+  public Usuario? Usuario { get; set; }
+  public int? IdUsuario { get; set; }
+
+  public string? Comentario { get; set; }
+  public int Calificacion { get; set; }
+
+  public DateTime? Fecha { get; set; }
+
+
+
 }
