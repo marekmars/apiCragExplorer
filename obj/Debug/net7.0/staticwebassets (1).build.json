@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "FjEJzeanfxk9USnFtxt3dr1XvfjqNGMc7SDioMwukJc=",
+  "Source": "CragExplorer",
+  "BasePath": "_content/CragExplorer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CragExplorer\\wwwroot",
+      "Source": "CragExplorer",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_14.jpg",
+      "SourceId": "CragExplorer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "RelativePath": "Uploads/img_avatar_14.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\img_avatar_14.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_15.jpg",
+      "SourceId": "CragExplorer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "RelativePath": "Uploads/img_avatar_15.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\img_avatar_15.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_9.jpg",
+      "SourceId": "CragExplorer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "RelativePath": "Uploads/img_avatar_9.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\img_avatar_9.jpg"
+    }
+  ]
+}

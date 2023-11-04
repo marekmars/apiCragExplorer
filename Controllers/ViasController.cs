@@ -69,8 +69,7 @@ public class ViasController : ControllerBase
             if (reseniasEnVias.Count() != 0)
             {
                 double calificacionPromedio = estrellas / reseniasEnVias.Count();
-                double calificacionRedondeada = Math.Round(calificacionPromedio * 2, MidpointRounding.AwayFromZero) / 2;
-                return Ok(calificacionRedondeada);
+                return Ok(calificacionPromedio);
             }
             else
             {
@@ -107,6 +106,7 @@ public class ViasController : ControllerBase
             return BadRequest("Error al obtener las calificaciones: " + e.Message);
         }
     }
+   
     //==========================================
 
     [HttpGet("test")]

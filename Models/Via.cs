@@ -7,7 +7,7 @@ namespace CragExplorer.Models;
 [Table("vias")]
 public class Via
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     [ForeignKey("IdZona")]
     public Zona? Zona { get; set; }

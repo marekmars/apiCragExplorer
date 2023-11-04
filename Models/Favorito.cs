@@ -6,15 +6,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CragExplorer.Models;
 [Table("favoritos")]
-public class Favorito {
-    [Display(Name ="Codigo")]
-    public int Id { get ; set ; }
-  public string? Nombre { get; set; }
-    public string? Apellido { get; set; }
+public class Favorito
+{
+  [Key]
+  [Column("id")]
+  public int Id { get; set; }
   
-    public string? Correo { get; set; }
-    public string? Clave { get; set; }
-    public string? Avatar{get; set; }
-    public bool? Google { get; set; }
-   
+  [ForeignKey("IdVia")]
+  public Via? Via { get; set; }
+
+  [Column("idVia")]
+  public int IdVia { get; set; }
+
+  [ForeignKey("IdUsuario")]
+  public Usuario? Usuario { get; set; }
+  
+  [Column("idUsuario")]
+  public int IdUsuario { get; set; }
+
+  [Column("fecha")]
+  public DateTime Fecha { get; set; }
+
+
+
 }

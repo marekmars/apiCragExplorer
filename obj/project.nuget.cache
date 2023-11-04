@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M5Ch6PZIe7iGOpA1KNAuqbXoPObY79azu9ZT+VSYipXtjnNmdcAE49pkOOFI0olZe+GxYOT5LtVbvoBicaHFJg==",
+  "dgSpecHash": "L0jtFnmCb1E/6uFNvf04CiB5u1hHCYEcNk8g3PjmTunrXlol6BhgXBcUPQYsUUMQFZjRHJspLX+YJMkUjyOXGQ==",
   "success": true,
   "projectFilePath": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\CragExplorer.csproj",
   "expectedPackageFiles": [
@@ -85,9 +85,9 @@
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.diasymreader\\1.4.0\\microsoft.diasymreader.1.4.0.nupkg.sha512",
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\7.0.10\\microsoft.dotnet.scaffolding.shared.7.0.10.nupkg.sha512",
-    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
-    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.12\\microsoft.entityframeworkcore.abstractions.7.0.12.nupkg.sha512",
-    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.12\\microsoft.entityframeworkcore.analyzers.7.0.12.nupkg.sha512",
+    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.13\\microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
+    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.13\\microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",
+    "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.13\\microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.2\\microsoft.entityframeworkcore.relational.7.0.2.nupkg.sha512",
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Heisen\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",

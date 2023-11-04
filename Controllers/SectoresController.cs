@@ -103,6 +103,49 @@ public class SectoresController : ControllerBase
 
 
     //==========================================
+
+    [Authorize]
+    [HttpGet("foto/{id}")]
+    public async Task<ActionResult<string>> GetFotoSector(int id)
+    {
+        try
+        {
+            // Encuentra las zonas en el sector dado
+            var zonasEnSector = _context.Zonas
+                .Where(zona => zona.IdSector == id)
+                .ToList();
+
+            // Encuentra las vías en esas zonas (consulta en memoria)
+            var viasEnZonas = _context.Vias
+                .AsEnumerable() // Cambio a operación en memoria
+                .Where(via => zonasEnSector.Any(zona => zona.Id == via.IdZona))
+                .ToList();
+
+            // Encuentra una foto de las vías en esas zonas (consulta en memoria)
+            var fotoEnVia = _context.Fotos
+                .AsEnumerable() // Cambio a operación en memoria
+                .Where(foto => viasEnZonas.Any(via => via.Id == foto.IdVia))
+                .Select(foto => foto.Url)
+                .FirstOrDefault(); // Obtenemos la primera foto o null si no hay fotos
+
+            if (fotoEnVia != null)
+            {
+                return Ok(fotoEnVia);
+            }
+            else
+            {
+                return NotFound(); // No se encontraron fotos
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener la foto del sector: " + e.Message);
+        }
+    }
+
+
+
+    //==========================================
     [Authorize]
     [HttpGet("calificacion/{id}")]
     public async Task<ActionResult<IEnumerable<double>>> GetCalificacionSector(int id)
@@ -133,9 +176,9 @@ public class SectoresController : ControllerBase
             if (reseniasEnVias.Count() != 0)
             {
                 double calificacionPromedio = estrellas / reseniasEnVias.Count();
-               double calificacionRedondeada = Math.Round(calificacionPromedio * 2, MidpointRounding.AwayFromZero) / 2;
+                double calificacionRedondeada = Math.Round(calificacionPromedio, 2);
                 return Ok(calificacionRedondeada);
-                
+
             }
             else return Ok(0);
 

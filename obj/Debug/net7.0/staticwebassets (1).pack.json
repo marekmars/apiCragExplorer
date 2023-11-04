@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_14.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\img_avatar_14.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_15.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\img_avatar_15.jpg"
+    },
+    {
+      "Id": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\.Net\\CragExplorer\\wwwroot\\Uploads\\img_avatar_9.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\img_avatar_9.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.CragExplorer.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.CragExplorer.props",
+      "PackagePath": "build\\CragExplorer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.CragExplorer.props",
+      "PackagePath": "buildMultiTargeting\\CragExplorer.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.CragExplorer.props",
+      "PackagePath": "buildTransitive\\CragExplorer.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -30,6 +30,7 @@ public class FotosController : ControllerBase
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+            var via= await _context.Vias.FirstOrDefaultAsync(x => x.Id == idVia);
             int idUsuario = usuario.Id;
             Console.WriteLine(fotos.Count);
 
@@ -83,18 +84,18 @@ public class FotosController : ControllerBase
                 Console.WriteLine("IDVIA: " + idVia);
                 Console.WriteLine("URL: " + urlFoto);
                 Console.WriteLine("IDUSUARIO: " + usuario.Id);
-                Foto foto = new()
+              
+                _context.Fotos.Add(new Foto()
                 {
                     IdVia = idVia,
                     Url = urlFoto,
-                    IdUsuario = usuario.Id
-                };
-                // _context.Fotos.Add(foto);
-                // _context.SaveChanges();
+                    IdUsuario = usuario.Id,     
+                });
+                _context.SaveChanges();
 
-                var sql = "INSERT INTO `fotos`(`idVia`, `url`, `idUsuario`) VALUES (@p0, @p1, @p2)";
-                _context.Database.ExecuteSqlRaw(sql, idVia, urlFoto, idUsuario);
-                Console.WriteLine(foto);
+                // var sql = "INSERT INTO `fotos`(`idVia`, `url`, `idUsuario`) VALUES (@p0, @p1, @p2)";
+                // _context.Database.ExecuteSqlRaw(sql, idVia, urlFoto, idUsuario);
+                // Console.WriteLine(foto);
 
             }
 
