@@ -308,6 +308,163 @@ public class UsuariosController : ControllerBase
         }
     }
     //==========================================
+   
+    [HttpPost("recupero")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetByEmail([FromForm] string correo)
+    {
+        try
+        { //método sin autenticar, busca el propietario x email
+            Console.WriteLine($"Email: {correo}");
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == correo);
+            var link = "";
+            string localIPv4 = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName()).AddressList
+                .FirstOrDefault(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                 ?.ToString();
+            var dominio = _environment.IsDevelopment() ? localIPv4 : "www.misitio.com";
+
+            if (usuario != null)
+            {
+                var key = new SymmetricSecurityKey(
+                                   System.Text.Encoding.ASCII.GetBytes(
+                                       config["TokenAuthentication:SecretKey"]
+                                   )
+                               );
+                var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, usuario.Correo),
+                    new Claim("Id", usuario.Id+""),
+                    new Claim("Correo", usuario.Correo),
+                    new Claim("FullName", usuario.Nombre + " " + usuario.Apellido),
+                    new Claim("Avatar", usuario.Avatar)
+                };
+
+                var token = new JwtSecurityToken(
+                    issuer: config["TokenAuthentication:Issuer"],
+                    audience: config["TokenAuthentication:Audience"],
+                    claims: claims,
+                    expires: DateTime.Now.AddHours(24),
+                    signingCredentials: credenciales
+                );
+
+
+                link = $"https://{dominio}:5001/api/Usuarios/token?access_token={new JwtSecurityTokenHandler().WriteToken(token)}";
+
+
+                Console.WriteLine(link);
+
+                string subject = "Pedido de Recuperacion de Contraseña";
+                string body = @$"<html>
+                <body>
+                    <h1>Recuperación de Contraseña</h1>
+                    <p>Estimado {usuario.Nombre + usuario.Apellido},</p>
+                    <p>Hemos recibido una solicitud para restablecer tu contraseña.</p>
+                    <p>Por favor, haz clic en el siguiente enlace para crear una nueva contraseña:</p>
+                    <p><a href='{link}'>Restablecer Contraseña</a></p>
+                    <p>Si no solicitaste el restablecimiento de contraseña, puedes ignorar este correo electrónico.</p>
+                    <p>Este enlace expirará en 24 horas por motivos de seguridad.</p>
+                    <p>Atentamente,</p>
+                    <p>Tu equipo de soporte</p>
+                </body>
+            </html>";
+
+                await enviarMail(correo, subject, body);
+
+                return Ok("enviado");
+            }
+            else
+            {
+                return BadRequest("Nombre de usuario o clave incorrectos");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("ERRRROR" + ex.Message);
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("token")]
+    [Authorize]
+    public async Task<IActionResult> Token()
+    {
+        try
+        {
+            var perfil = new
+            {
+                Email = User.Identity?.Name,
+                Nombre = User.Claims.First(x => x.Type == "FullName").Value,
+            };
+            Console.WriteLine("ASDASD0" + perfil.Nombre);
+            Random rand = new Random(Environment.TickCount);
+            string randomChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789";
+            string nuevaClave = "";
+            for (int i = 0; i < 8; i++)
+            {
+                nuevaClave += randomChars[rand.Next(0, randomChars.Length)];
+            }
+
+            string subject = "Nueva Clave de Ingreso";
+            string body = @$"<html>
+                <body>
+                    <h1>Recuperación de Contraseña</h1>
+                    <p>Estimado {perfil.Nombre},</p>
+                    <p>Hemos generado una nueva contraseña para tu cuenta.</p>
+                    <p>Tu nueva contraseña es: <strong>{nuevaClave}</strong></p>
+                    <p>Por favor, inicia sesión con esta nueva contraseña y cámbiala lo antes posible.</p>
+                    <p>Si no solicitaste un cambio de contraseña, por favor contáctanos de inmediato.</p>
+                    <p>Atentamente,</p>
+                    <p>Tu equipo de soporte</p>
+                </body>
+            </html>";
+            await enviarMail(perfil.Email, subject, body);
+
+            var propietario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == perfil.Email);
+
+            if (propietario != null)
+            {
+                propietario.Clave = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: nuevaClave,
+                salt: System.Text.Encoding.ASCII.GetBytes(config["Salt"]),
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 1000,
+                numBytesRequested: 256 / 8));
+                _context.Update(propietario);
+                _context.SaveChanges();
+            }
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    //==========================================
+     private async Task<IActionResult> enviarMail(string email, string subject, string body)
+    {
+        var emailMessage = new MimeMessage();
+
+        emailMessage.From.Add(new MailboxAddress("Sistema", config["SMTPUser"]));
+        emailMessage.To.Add(new MailboxAddress("", email));
+        emailMessage.Subject = subject;
+        emailMessage.Body = new TextPart("html") { Text = body, };
+
+        using (var client = new SmtpClient())
+        {
+            client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+            await client.ConnectAsync("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.Auto);
+            await client.AuthenticateAsync(config["SMTPUser"], config["SMTPPass"]);
+            await client.SendAsync(emailMessage);
+
+            await client.DisconnectAsync(true);
+        }
+        return Ok();
+    }
+
+    //==========================================
 
     [HttpGet("test")]
     [Authorize]
