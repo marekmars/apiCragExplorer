@@ -288,9 +288,9 @@ public class UsuariosController : ControllerBase
     //     }
     // }
     //==========================================
-    [HttpGet("user")]
+    [HttpGet("activo")]
     [Authorize]
-    public async Task<ActionResult<Usuario>> GetUser() // devuelve el propietario logueado
+    public async Task<ActionResult<Usuario>> GetUser() 
     {
         try
         {

@@ -30,7 +30,7 @@ public class FotosController : ControllerBase
         try
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
-            var via= await _context.Vias.FirstOrDefaultAsync(x => x.Id == idVia);
+            var via = await _context.Vias.FirstOrDefaultAsync(x => x.Id == idVia);
             int idUsuario = usuario.Id;
             Console.WriteLine(fotos.Count);
 
@@ -84,18 +84,15 @@ public class FotosController : ControllerBase
                 Console.WriteLine("IDVIA: " + idVia);
                 Console.WriteLine("URL: " + urlFoto);
                 Console.WriteLine("IDUSUARIO: " + usuario.Id);
-              
+
                 _context.Fotos.Add(new Foto()
                 {
                     IdVia = idVia,
                     Url = urlFoto,
-                    IdUsuario = usuario.Id,     
+                    IdUsuario = usuario.Id,
                 });
                 _context.SaveChanges();
 
-                // var sql = "INSERT INTO `fotos`(`idVia`, `url`, `idUsuario`) VALUES (@p0, @p1, @p2)";
-                // _context.Database.ExecuteSqlRaw(sql, idVia, urlFoto, idUsuario);
-                // Console.WriteLine(foto);
 
             }
 
@@ -107,7 +104,114 @@ public class FotosController : ControllerBase
         }
     }
 
+    //==========================================
+   [Authorize]
+[HttpDelete("eliminarFoto/{id}")]
+public async Task<ActionResult> EliminarFoto(int id)
+{
+    try
+    {
+        // Buscar la foto por ID
+        var foto = await _context.Fotos.FindAsync(id);
 
+        if (foto == null)
+        {
+            return NotFound("La foto no existe.");
+        }
+
+        // Verificar que el usuario autenticado sea el propietario de la foto (si es necesario)
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+
+        if (usuario == null || foto.IdUsuario != usuario.Id)
+        {
+            return Unauthorized("No tienes permisos para eliminar esta foto.");
+        }
+
+        string wwwPath = _environment.WebRootPath;
+        string filePath = Path.Combine(wwwPath, foto.Url);
+
+        // if (System.IO.File.Exists(filePath))
+        // {
+        //     // Elimina el archivo
+        //     System.IO.File.Delete(filePath);
+        // }
+System.IO.File.Delete(filePath);
+        // Eliminar la foto del contexto y guardar los cambios
+        _context.Fotos.Remove(foto);
+        await _context.SaveChangesAsync();
+
+        return Ok("La foto ha sido eliminada con éxito.");
+    }
+    catch (Exception e)
+    {
+        return BadRequest($"Error al eliminar la foto: {e.Message}");
+    }
+}
+    //==========================================
+
+    [Authorize]
+    [HttpGet("{idVia}/fotoUsuario")]
+
+    public async Task<ActionResult<IEnumerable<string>>> GetFotoUsuarioSesion(int idVia)
+    {
+        try
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+            // Encuentra las zonas en el sector dado
+
+            // Encuentra las vías en esas zonas (consulta en memoria)
+            var fotoEnVia = _context.Fotos
+                .AsEnumerable() // Cambio a operación en memoria
+                .Where(foto => foto.IdVia == idVia && foto.IdUsuario == usuario.Id)
+                .Select(foto => foto.Url)
+                .ToList();
+            Console.WriteLine("fotoEnVia: " + fotoEnVia);
+            if (fotoEnVia != null)
+            {
+                return Ok(fotoEnVia);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener la foto del sector: " + e.Message);
+        }
+    }
+
+    //==========================================
+      [Authorize]
+    [HttpGet("{idVia}/fotos")]
+
+    public async Task<ActionResult<IEnumerable<string>>> GetFotosUsuario(int idVia)
+    {
+        try
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+            // Encuentra las zonas en el sector dado
+
+            // Encuentra las vías en esas zonas (consulta en memoria)
+            var fotoEnVia = _context.Fotos
+                .AsEnumerable() // Cambio a operación en memoria
+                .Where(foto => foto.IdVia == idVia && foto.IdUsuario == usuario.Id)
+                .ToList();
+            Console.WriteLine("fotoEnVia: " + fotoEnVia);
+            if (fotoEnVia != null)
+            {
+                return Ok(fotoEnVia);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener la foto del sector: " + e.Message);
+        }
+    }
 
     //==========================================
 
