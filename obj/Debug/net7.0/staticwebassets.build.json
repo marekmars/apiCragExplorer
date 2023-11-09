@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mysiw9uOPk/nL7SyJVwpiKHmfm1XxCh2GWTINyaIlhg=",
+  "Hash": "MhubpxP9PLh6zF3I5/nnVI/7fHp4rPQGlCagd84gjr0=",
   "Source": "CragExplorer",
   "BasePath": "_content/CragExplorer",
   "Mode": "Default",
@@ -238,12 +238,12 @@
       "OriginalItemSpec": "wwwroot\\Uploads\\Avatars\\img_avatar_28.jpg"
     },
     {
-      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_29.jpg",
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_31.jpg",
       "SourceId": "CragExplorer",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\",
       "BasePath": "_content/CragExplorer",
-      "RelativePath": "Uploads/Avatars/img_avatar_29.jpg",
+      "RelativePath": "Uploads/Avatars/img_avatar_31.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -252,7 +252,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\Avatars\\img_avatar_29.jpg"
+      "OriginalItemSpec": "wwwroot\\Uploads\\Avatars\\img_avatar_31.jpg"
     },
     {
       "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Avatars\\img_avatar_9.jpg",
@@ -270,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\Avatars\\img_avatar_9.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_1_99yiQGWuRv.jpg",
+      "SourceId": "CragExplorer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "RelativePath": "Uploads/Fotos/via_1_99yiQGWuRv.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Fotos\\via_1_99yiQGWuRv.jpg"
     },
     {
       "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_1_AdAZVwDaAu.jpg",
@@ -304,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\Fotos\\via_1_dcyBkRtAiZ.jpg"
+    },
+    {
+      "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_1_xPDy5Ga7Ud.jpg",
+      "SourceId": "CragExplorer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\",
+      "BasePath": "_content/CragExplorer",
+      "RelativePath": "Uploads/Fotos/via_1_xPDy5Ga7Ud.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Fotos\\via_1_xPDy5Ga7Ud.jpg"
     },
     {
       "Identity": "D:\\Documentos\\ULP\\4to Cuatrimestre\\Laboratorio III\\Proyecto final\\ApiCragExplorer\\wwwroot\\Uploads\\Fotos\\via_110_r3R6dsa.jpg",

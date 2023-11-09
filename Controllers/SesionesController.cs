@@ -228,6 +228,48 @@ public class SesionesController : ControllerBase
     }
     //==========================================
     [Authorize]
+    [HttpGet("obtenerSesion/{idSesion}")]
+    public async Task<ActionResult<IEnumerable<Sesion>>> ObtenerSesion(int idSesion)
+    {
+        try
+        {
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+
+            var sesion = _context.Sesiones
+                            .Where(sesion => sesion.Id == idSesion)
+                            .Include(sesion => sesion.Usuario)
+                            .Include(sesion => sesion.Via)
+                                .ThenInclude(via => via.Zona)
+                                    .ThenInclude(zona => zona.Sector)
+                            .Include(sesion => sesion.Via)
+                                .ThenInclude(via => via.Grado)
+                            .OrderByDescending(sesion => sesion.Fecha) // Ordenar por la propiedad Fecha de manera ascendente
+                            .FirstOrDefault();
+            if (sesion == null)
+            {
+                return NotFound(false);
+            }
+
+            // Verificar que el usuario autenticado sea el propietario de la sesión 
+
+
+            if (usuario == null || sesion.IdUsuario != usuario.Id)
+            {
+                return Unauthorized(false);
+            }
+            Console.WriteLine(usuario.Id);
+            // Encuentra las zonas en el sector dado
+
+
+            return Ok(sesion);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener las calificaciones: " + e.Message);
+        }
+    }
+    //==========================================
+    [Authorize]
     [HttpGet("cantidadProyectos")]
     public async Task<ActionResult<int>> CantidadProyectos()
     {

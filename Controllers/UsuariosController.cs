@@ -242,6 +242,99 @@ public class UsuariosController : ControllerBase
             return BadRequest("Error Registrar " + ex.Message);
         }
     }
+    //==========================================
+
+ [HttpPut("editar")]
+[Authorize]
+public async Task<IActionResult> EditarUsuario([FromBody] Usuario usuarioEditado)
+{
+    try
+    {
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+        Console.WriteLine("Corre: " + usuarioEditado.Correo);
+        Console.WriteLine("Id: " + usuarioEditado.Id);
+        Console.WriteLine("Clave: " + usuarioEditado.Clave);
+        Console.WriteLine("Google: " + usuarioEditado.Google);
+        Console.WriteLine("Avatar: " + usuarioEditado.Avatar);
+        Console.WriteLine("Nombre: " + usuarioEditado.Nombre);
+        Console.WriteLine("Apellido: " + usuarioEditado.Apellido);
+
+        if (usuario == null)
+        {
+            return NotFound();
+        }
+
+        bool correoCambiado = !string.IsNullOrEmpty(usuarioEditado.Correo) && usuarioEditado.Correo != usuario.Correo;
+        bool claveCambiada = false;
+
+        usuario.Nombre = !string.IsNullOrEmpty(usuarioEditado.Nombre) ? usuarioEditado.Nombre : usuario.Nombre;
+        usuario.Apellido = !string.IsNullOrEmpty(usuarioEditado.Apellido) ? usuarioEditado.Apellido : usuario.Apellido;
+
+        //Si es de google no deja editar mail ni contraseña
+        if (usuario.Google != true)
+        {
+            usuario.Correo = correoCambiado ? usuarioEditado.Correo : usuario.Correo;
+
+            //editar contraseña
+            if (!string.IsNullOrEmpty(usuarioEditado.Clave))
+            {
+                string hashedNuevo = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                    password: usuarioEditado.Clave,
+                    salt: System.Text.Encoding.ASCII.GetBytes(config["Salt"]),
+                    prf: KeyDerivationPrf.HMACSHA1,
+                    iterationCount: 1000,
+                    numBytesRequested: 256 / 8
+                ));
+
+                claveCambiada = hashedNuevo != usuario.Clave;
+                if (claveCambiada)
+                {
+                    usuario.Clave = hashedNuevo;
+                }
+            }
+        }
+
+        //Editar Avatar
+        if (usuarioEditado.Avatar != null && usuarioEditado.Avatar != "")
+        {
+            string nombreFoto = $"img_avatar_{usuario.Id}.jpg";
+            if (usuarioEditado.Avatar.Contains(","))
+            {
+                usuarioEditado.Avatar = usuarioEditado.Avatar.Split(',')[1];
+            }
+            byte[] imageBytes = Convert.FromBase64String(usuarioEditado.Avatar);
+            string wwwPath = _environment.WebRootPath;
+            string path = Path.Combine(wwwPath, "Uploads/Avatars");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string fileName = nombreFoto;
+            string pathCompleto = Path.Combine(path, fileName);
+            using (MemoryStream stream = new MemoryStream(imageBytes))
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+                image.Save(pathCompleto, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+            usuario.Avatar = $"uploads/avatars/{nombreFoto}";
+        }
+        _context.Update(usuario);
+        await _context.SaveChangesAsync();
+
+        if (correoCambiado || claveCambiada)
+        {
+            // Return a 401 Unauthorized status code
+            return Unauthorized("Debe reloguearse");
+        }
+
+        return Ok("Usuario editado con exito");
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
+
 
     //==========================================
     // [HttpPost("refresh-token")]
@@ -290,7 +383,7 @@ public class UsuariosController : ControllerBase
     //==========================================
     [HttpGet("activo")]
     [Authorize]
-    public async Task<ActionResult<Usuario>> GetUser() 
+    public async Task<ActionResult<Usuario>> GetUser()
     {
         try
         {
@@ -308,7 +401,7 @@ public class UsuariosController : ControllerBase
         }
     }
     //==========================================
-   
+
     [HttpPost("recupero")]
     [AllowAnonymous]
     public async Task<IActionResult> GetByEmail([FromForm] string correo)
@@ -443,7 +536,7 @@ public class UsuariosController : ControllerBase
     }
 
     //==========================================
-     private async Task<IActionResult> enviarMail(string email, string subject, string body)
+    private async Task<IActionResult> enviarMail(string email, string subject, string body)
     {
         var emailMessage = new MimeMessage();
 
