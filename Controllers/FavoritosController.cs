@@ -70,6 +70,39 @@ public class FavoritosController : ControllerBase
         }
 
     }
+     //==========================================
+    [Authorize]
+    [HttpGet("obtenerFavoritos")]
+    public async Task<ActionResult<IEnumerable<Favorito>>> ObtenerFavoritos()
+    {
+        try
+        {
+
+            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Correo == User.Identity.Name);
+            Console.WriteLine(usuario.Id);
+            // Encuentra las zonas en el sector dado
+            var favoritos = _context.Favoritos
+                .Where(favorito => favorito.IdUsuario == usuario.Id)
+                .Include(favorito => favorito.Usuario)
+                .Include(favorito => favorito.Via)
+                    .ThenInclude(via => via.Zona)
+                        .ThenInclude(zona => zona.Sector)
+                .Include(favorito => favorito.Via)
+                    .ThenInclude(via => via.Grado)
+                .OrderByDescending(favorito => favorito.Fecha) // Ordenar por la propiedad Fecha de manera ascendente
+                .ToList();
+
+
+            // Encuentra las fotos de las vías en esas zonas (consulta en memoria)
+
+
+            return Ok(favoritos);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Error al obtener las calificaciones: " + e.Message);
+        }
+    }
     //==========================================
         [Authorize]
     [HttpGet("chequear/{idVia}")]
