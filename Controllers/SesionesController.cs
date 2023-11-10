@@ -171,7 +171,7 @@ public class SesionesController : ControllerBase
             Console.WriteLine(usuario.Id);
             // Encuentra las zonas en el sector dado
             var sesiones = _context.Sesiones
-                .Where(sesion => sesion.IdUsuario == usuario.Id && sesion.IdTipo <= 3 && sesion.IdTipo != 0)
+                .Where(sesion => sesion.IdUsuario == usuario.Id && sesion.IdTipo != 4 && sesion.IdTipo != 0)
                 .Include(sesion => sesion.Usuario)
                 .Include(sesion => sesion.Via)
                     .ThenInclude(via => via.Zona)
@@ -205,7 +205,7 @@ public class SesionesController : ControllerBase
             Console.WriteLine(usuario.Id);
             // Encuentra las zonas en el sector dado
             var sesiones = _context.Sesiones
-                .Where(sesion => sesion.IdUsuario == usuario.Id && sesion.IdTipo > 3)
+                .Where(sesion => sesion.IdUsuario == usuario.Id && sesion.IdTipo == 4)
                 .Include(sesion => sesion.Usuario)
                 .Include(sesion => sesion.Via)
                     .ThenInclude(via => via.Zona)
@@ -351,7 +351,7 @@ public class SesionesController : ControllerBase
             var maxGrado = _context.Sesiones
                 .Include(sesion => sesion.Via)
                 .ThenInclude(via => via.Grado)
-                .Where(sesion => sesion.IdUsuario == usuario.Id)
+                .Where(sesion => sesion.IdUsuario == usuario.Id&&sesion.IdTipo!=4)
                 .OrderByDescending(sesion => sesion.Via.IdGrado)
                 .Select(sesion => sesion.Via.Grado.GradoN)
                 .FirstOrDefault();
